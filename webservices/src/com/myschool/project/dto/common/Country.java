@@ -11,8 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,23 +26,23 @@ public class Country implements Serializable{
 
 	@Id
 	@Column(name="countryCode",unique=true,nullable=false)
-	String countryCode;
+	private String countryCode;
 	@Column(name="description")
-	String countryName;
+	private String countryName;
 	@Column(name="addr1_avail")
-	boolean address1Enabled;
+	private boolean address1Enabled;
 	@Column(name="addr2_avail")
-	boolean address2Enabled;
+	private boolean address2Enabled;
 	@Column(name="addr3_avail")
-	boolean address3Enabled;
+	private boolean address3Enabled;
 	@Column(name="addr4_avail")
-	boolean address4Enabled;
+	private boolean address4Enabled;
 	@Column(name="city_avail")
-	boolean cityEnabled;
+	private boolean cityEnabled;
 	@Column(name="state_avail")
-	boolean stateEnabled;
+	private boolean stateEnabled;
 	@Column(name="postal_code")
-	boolean postalCodeEnabled;
+	private boolean postalCodeEnabled;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="country", cascade=CascadeType.ALL)
 	private Set<StatesOfCountries> states = new HashSet<StatesOfCountries>();
@@ -52,10 +50,6 @@ public class Country implements Serializable{
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="country",cascade=CascadeType.ALL)
 	private List<DistrictsOfState> districts = new ArrayList<DistrictsOfState>();
 	
-	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinTable(name="ps_country_schoolboard")
-	private Set<EducationBoard> schoolboards;
-
 	public boolean isAddress1Enabled() {
 		return address1Enabled;
 	}

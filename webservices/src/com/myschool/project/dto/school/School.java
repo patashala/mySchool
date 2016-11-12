@@ -2,85 +2,82 @@ package com.myschool.project.dto.school;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.myschool.project.dto.common.EducationBoard;
+import com.myschool.project.dto.teacher.Teacher;
 
 @Entity
 @Table(name="ps_school_tbl")
 public class School implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	String schoolId;
+	private String schoolId;
 
 	@Column(name="eff_status")
-	boolean schoolEnabled;
-	
+	private boolean schoolEnabled;
+
 	@Column(name="eff_date")
-	long effectiveDateTime;
-	
+	private long effectiveDateTime;
+
 	@Column(name="desc_short")
-	String schoolNameShort;
-	
+	private String schoolNameShort;
+
 	@Column(name="desc_long")
-	String schoolFullName;
-	
-	//country
-	
-	@Column(name="address1")
-	String addressLine1;
-	@Column(name="address2")
-	String addressLine2;
-	@Column(name="address3")
-	String addressLine3;
-	@Column(name="address4")
-	String addressLine4;
-	
-	String city;
-	
-	//state
-	
-	@Column(name="postal")
-	int postalCode;
-	
-	String category;
-	
-	//District
-	String district;
-	
+	private String schoolFullName;
+
+	private String category;
+
 	@Column(name="establish_date")
-	Date schoolEstablishedDate;
-	
-	//notes
-	//currency from Currency table
-	//Board Id from board table
+	private Date schoolEstablishedDate;
+
+	private long notes;
+	private String currencyCode;
+
 	
 	String createdBy;
 	Date created_dttm;
 	String lastUpdatedBy;
 	Date lastUpdated_dttm;
+
+	@OneToMany(mappedBy="school")
+	private Set<EducationBoard> schoolEducationBoards = new HashSet<EducationBoard>();
+
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="school")
+	private Set<SchoolBranch> schoolBranches;
 	
-	String sc_latitude;
-	String sc_longitude;
-	
-	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="ps_tbl_school_board")
-	Set<EducationBoard> schoolEducationBoard;
-	
+	@OneToMany(mappedBy="schoolSections")
+	private List<SchoolBranchClassSections> schoolsections;
+
+	@OneToMany(mappedBy="schoolTeachers")
+	private List<Teacher> teachers;
 	
 	public String getSchoolId() {
 		return schoolId;
+	}
+	public Set<EducationBoard> getSchoolEducationBoard() {
+		return schoolEducationBoards;
+	}
+	public void setSchoolEducationBoard(Set<EducationBoard> schoolEducationBoards) {
+		this.schoolEducationBoards = schoolEducationBoards;
+	}
+	
+	public Set<SchoolBranch> getSchoolBranches() {
+		return schoolBranches;
+	}
+	public void setSchoolBranches(Set<SchoolBranch> schoolBranches) {
+		this.schoolBranches = schoolBranches;
 	}
 	public void setSchoolId(String schoolId) {
 		this.schoolId = schoolId;
@@ -115,12 +112,6 @@ public class School implements Serializable{
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getDistrict() {
-		return district;
-	}
-	public void setDistrict(String district) {
-		this.district = district;
-	}
 	public Date getSchoolEstablishedDate() {
 		return schoolEstablishedDate;
 	}
@@ -151,17 +142,35 @@ public class School implements Serializable{
 	public void setLastUpdated_dttm(Date lastUpdated_dttm) {
 		this.lastUpdated_dttm = lastUpdated_dttm;
 	}
-	public String getSc_latitude() {
-		return sc_latitude;
+	public long getNotes() {
+		return notes;
 	}
-	public void setSc_latitude(String sc_latitude) {
-		this.sc_latitude = sc_latitude;
+	public void setNotes(long notes) {
+		this.notes = notes;
 	}
-	public String getSc_longitude() {
-		return sc_longitude;
+	public String getCurrencyCode() {
+		return currencyCode;
 	}
-	public void setSc_longitude(String sc_longitude) {
-		this.sc_longitude = sc_longitude;
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
 	}
-	
+	public Set<EducationBoard> getSchoolEducationBoards() {
+		return schoolEducationBoards;
+	}
+	public void setSchoolEducationBoards(Set<EducationBoard> schoolEducationBoards) {
+		this.schoolEducationBoards = schoolEducationBoards;
+	}
+	public List<SchoolBranchClassSections> getSchoolsections() {
+		return schoolsections;
+	}
+	public void setSchoolsections(List<SchoolBranchClassSections> schoolsections) {
+		this.schoolsections = schoolsections;
+	}
+	public List<Teacher> getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+
 }

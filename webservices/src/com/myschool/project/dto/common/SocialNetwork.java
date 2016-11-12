@@ -5,7 +5,10 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.myschool.project.dto.teacher.TeacherSocialNetwork;
 
 @Entity
 @Table(name="ps_socialnet_tbl")
@@ -15,12 +18,25 @@ public class SocialNetwork implements Serializable {
 
 	@Id
 	String socialNetworkId;
+	
 	@Column(name="description")
 	String socialNetworkName;
+	
 	@Column(name="eff_date")
 	long effectiveDateTime;
+	
 	@Column(name="eff_status")
 	boolean socialNetworkEnabled;
+	
+	@ManyToOne
+	private TeacherSocialNetwork teachersSocialNet;
+	
+	public TeacherSocialNetwork getTeachersSocialNet() {
+		return teachersSocialNet;
+	}
+	public void setTeachersSocialNet(TeacherSocialNetwork teachersSocialNet) {
+		this.teachersSocialNet = teachersSocialNet;
+	}
 	public String getSocialNetworkId() {
 		return socialNetworkId;
 	}

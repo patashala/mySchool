@@ -21,13 +21,15 @@ public class StatesOfCountries implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	String stateCode; // prefix with country code
+	private String stateCode; // prefix with country code
+	
 	@Column(name="description")
-	String stateName;
+	private String stateName;
+	
 	@Column(name="eff_date")
-	long effectiveDateTime;
+	private long effectiveDateTime;
 	@Column(name="eff_status")
-	boolean stateEnabled;
+	private boolean stateEnabled;
 	
 	@ManyToOne
 	@JoinColumn(name="countryCode",nullable=false)
@@ -71,6 +73,13 @@ public class StatesOfCountries implements Serializable {
 	}
 	public void setEffectiveDateTime(long effectiveDateTime) {
 		this.effectiveDateTime = effectiveDateTime;
+	}
+	
+	public Set<DistrictsOfState> getDistricts() {
+		return districts;
+	}
+	public void setDistricts(Set<DistrictsOfState> districts) {
+		this.districts = districts;
 	}
 	
 	

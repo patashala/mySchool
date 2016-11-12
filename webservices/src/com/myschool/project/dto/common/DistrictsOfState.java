@@ -16,15 +16,15 @@ public class DistrictsOfState implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	String districtCode; //should be a combination of (COUNTRYCODE+STATECODE+DISTRICTCODE) eg: INDAPHYD
+	private String districtCode; //should be a combination of (COUNTRYCODE+STATECODE+DISTRICTCODE) eg: INDAPHYD
 	// state to district mapping each state will have many districts 
 	
 	@Column(name="description")
-	String districtName;
+	private String districtName;
 	@Column(name="eff_date")
-	long effectiveDateTime;
+	private long effectiveDateTime;
 	@Column(name="eff_status")
-	boolean districtEnabled;
+	private boolean districtEnabled;
 	
 	@ManyToOne
 	@JoinColumn(name="countryCode",nullable=false)

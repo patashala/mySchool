@@ -14,11 +14,12 @@ public class UserIdentity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	String identityId;
+	private String identityId;
 	@Column(name="description")
-	String idenityIdName;
+	private String idenityIdName;
 	@Column(name="ssn_type")
-	String identityType;
+	private String identityType;
+	
 	public String getIdentityId() {
 		return identityId;
 	}

@@ -16,15 +16,15 @@ public class SchoolCalendar implements Serializable{
 	
 	
 	@Id
-	String calendarId;
-	//map school --> branch or school as a whole
+	private String calendarId;
 	
 	@Column(name="description")
-	String calendar;
+	private String calendar;
 	
-	String calendarType;
-	Date startDate;
-	Date endDate;
+	private String calendarType;
+	private Date startDate;
+	private Date endDate;
+	
 	public String getCalendarId() {
 		return calendarId;
 	}

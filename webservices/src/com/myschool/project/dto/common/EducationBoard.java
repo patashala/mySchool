@@ -40,7 +40,7 @@ public class EducationBoard implements Serializable {
 	private List<Country> countries = new ArrayList<Country>();
 	
 	@ManyToOne
-	private School school = new School();
+	private School school;
 
 	public String getBoardId() {
 		return boardId;

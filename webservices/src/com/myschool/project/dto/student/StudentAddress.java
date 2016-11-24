@@ -13,6 +13,7 @@ import com.myschool.project.dto.common.Country;
 import com.myschool.project.dto.common.DistrictsOfState;
 import com.myschool.project.dto.common.StatesOfCountries;
 import com.myschool.project.dto.common.UserIdentity;
+import com.myschool.project.dto.school.School;
 
 @Entity
 @Table(name="ps_student_addr")
@@ -23,6 +24,9 @@ public class StudentAddress implements Serializable{
 	@Id
 	@ManyToOne
 	private Student student;
+	
+	@OneToOne
+	private School school;
 	
 	@OneToOne
 	private UserIdentity userIdentity;
@@ -59,6 +63,7 @@ public class StudentAddress implements Serializable{
 	private String addressLatitude;
 	@Column(name="longitude_pos")
 	private String addressLongitude;
+	
 	public Student getStudent() {
 		return student;
 	}

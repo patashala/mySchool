@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.myschool.project.dto.common.UserIdentity;
+import com.myschool.project.dto.parent.Parent;
 import com.myschool.project.dto.school.School;
 import com.myschool.project.dto.school.SchoolBranch;
 import com.myschool.project.dto.school.SchoolBranchClass;
@@ -47,7 +48,8 @@ public class Student implements Serializable{
 
 	@Column(name="eff_date")
 	private long effectiveDateTime;
-
+	
+	// states whether the student is enabled.. etc
 	@Column(name="eff_seq")
 	private int effectiveSequence;
 
@@ -56,7 +58,6 @@ public class Student implements Serializable{
 	@JoinColumn(name="classId")
 	private SchoolBranchClass studentClass;
 
-	@Id
 	@OneToOne
 	@JoinColumn(name="sectionId")
 	private SchoolBranchClassSections section;
@@ -64,16 +65,18 @@ public class Student implements Serializable{
 	@Column(name="class_entry_dt")
 	private Date entryDate;
 
-	@Id
 	@OneToOne
-	@JoinColumn(name="teacherId")
+	@JoinColumn(name="teacherId", nullable=true)
 	private Teacher teacher;
 
 	@Column(name="date_of_birth")
 	private Date dateOfBirth;
 
 	//Parent table
-
+	
+	@OneToOne
+	private Parent parent;
+	
 	@Column(name="sch_joining_dt")
 	private Date joiningDate;
 
@@ -95,6 +98,14 @@ public class Student implements Serializable{
 
 	@Column(name="lastupdated_dttm")
 	private long lastUpdatedDateTime;
+
+	public Parent getParent() {
+		return parent;
+	}
+
+	public void setParent(Parent parent) {
+		this.parent = parent;
+	}
 
 	public School getSchool() {
 		return school;

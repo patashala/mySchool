@@ -30,7 +30,6 @@ public class SchoolBranchClassSections implements Serializable{
 	@ManyToOne
 	private SchoolBranchClass schoolbranchclass;
 	
-	
 	@ManyToOne
 	private SchoolBranch branchSections;
 	

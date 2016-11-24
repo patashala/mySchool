@@ -2,7 +2,6 @@ package com.myschool.project.dto.school;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -24,18 +23,18 @@ public class School implements Serializable{
 
 	@Id
 	private String schoolId;
-
+	
+	@Column(name="eff_date")
+	private long effectiveDateTime;
+	
 	@Column(name="eff_status")
 	private boolean schoolEnabled;
 
-	@Column(name="eff_date")
-	private long effectiveDateTime;
-
-	@Column(name="desc_short")
-	private String schoolNameShort;
-
 	@Column(name="desc_long")
 	private String schoolFullName;
+	
+	@Column(name="desc_short")
+	private String schoolNameShort;
 
 	private String category;
 
@@ -44,7 +43,6 @@ public class School implements Serializable{
 
 	private long notes;
 	private String currencyCode;
-
 	
 	String createdBy;
 	Date created_dttm;
@@ -52,7 +50,7 @@ public class School implements Serializable{
 	Date lastUpdated_dttm;
 
 	@OneToMany(mappedBy="school")
-	private Set<EducationBoard> schoolEducationBoards = new HashSet<EducationBoard>();
+	private Set<EducationBoard> schoolEducationBoards;
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="school")
 	private Set<SchoolBranch> schoolBranches;
@@ -62,6 +60,9 @@ public class School implements Serializable{
 
 	@OneToMany(mappedBy="schoolTeachers")
 	private List<Teacher> teachers;
+	
+	@OneToMany(mappedBy="schoolclass")
+	private List<SchoolBranchClass> classes;
 	
 	public String getSchoolId() {
 		return schoolId;

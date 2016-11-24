@@ -41,6 +41,7 @@ public class Parent implements Serializable{
 	@Column(name="email_id")
 	private String emailId;
 	
+	// check this
 	@OneToOne
 	private UserIdentity userIdentity;
 	

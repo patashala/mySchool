@@ -22,14 +22,13 @@ public class TeacherSocialNetwork {
 	private String teacherId;
 	
 	@OneToOne
-	@PrimaryKeyJoinColumn
 	private Teacher teacher;
 	
 	@Column(name="eff_status")
 	private boolean availableOnSocialNetwork;
 	
-	@OneToMany(mappedBy="teachersSocialNet")
-	private List<SocialNetwork> socialNetworks;
+//	@OneToMany(mappedBy="teachersSocialNet")
+//	private List<SocialNetwork> socialNetworks;
 
 	public String getTeacherId() {
 		return teacherId;
@@ -47,12 +46,12 @@ public class TeacherSocialNetwork {
 		this.teacher = teacher;
 	}
 
-	public List<SocialNetwork> getSocialNetworks() {
-		return socialNetworks;
-	}
-
-	public void setSocialNetworks(List<SocialNetwork> socialNetworks) {
-		this.socialNetworks = socialNetworks;
-	}
+//	public List<SocialNetwork> getSocialNetworks() {
+//		return socialNetworks;
+//	}
+//
+//	public void setSocialNetworks(List<SocialNetwork> socialNetworks) {
+//		this.socialNetworks = socialNetworks;
+//	}
 	
 }

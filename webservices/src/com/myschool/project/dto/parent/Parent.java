@@ -1,6 +1,7 @@
 package com.myschool.project.dto.parent;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,11 +27,11 @@ public class Parent implements Serializable{
 	
 	@OneToMany
 	@JoinColumn(name="schoolId")
-	private School school;
+	private List<School> schools;
 	
 	@OneToMany
 	@JoinColumn(name="studentId")
-	private Student student;
+	private List<Student> students;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -57,22 +58,6 @@ public class Parent implements Serializable{
 
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
-	}
-
-	public School getSchool() {
-		return school;
-	}
-
-	public void setSchool(School school) {
-		this.school = school;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
 	}
 
 	public String getFirstName() {
@@ -121,6 +106,22 @@ public class Parent implements Serializable{
 
 	public void setPhone2(String phone2) {
 		this.phone2 = phone2;
+	}
+
+	public List<School> getSchools() {
+		return schools;
+	}
+
+	public void setSchools(List<School> schools) {
+		this.schools = schools;
+	}
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
 	}
 	
 	

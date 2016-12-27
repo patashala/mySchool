@@ -4,14 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name="ps_teacher_phone")
@@ -19,13 +14,13 @@ public class TeacherPhone implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
+	/*@Id
 	@GeneratedValue(generator="generator")
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "teacher"))
-	private String teacherId;
+	private String teacherId;*/
 	
+	@Id
 	@OneToOne
-	@PrimaryKeyJoinColumn
 	private Teacher teacher;
 	
 	@Column(name="eff_status")
@@ -41,13 +36,13 @@ public class TeacherPhone implements Serializable{
 	@Column(name="phone_no")
 	private String phoneNo;
 
-	public String getTeacherId() {
+	/*public String getTeacherId() {
 		return teacherId;
 	}
 
 	public void setTeacherId(String teacherId) {
 		this.teacherId = teacherId;
-	}
+	}*/
 
 	public boolean isPhoneAvailable() {
 		return phoneAvailable;

@@ -45,7 +45,8 @@ public class RepositoryConfiguration {
 		return datasource;
 	}
 	
-	@Bean
+	@Autowired
+	@Bean(name="sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 	 
 	    LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);

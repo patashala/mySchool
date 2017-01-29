@@ -17,26 +17,26 @@ public class SocialNetwork implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	String socialNetworkId;
+	private String socialNetworkId;
 	
 	@Column(name="description")
-	String socialNetworkName;
+	private String socialNetworkName;
 	
 	@Column(name="eff_date")
-	long effectiveDateTime;
+	private long effectiveDateTime;
 	
 	@Column(name="eff_status")
-	boolean socialNetworkEnabled;
+	private boolean socialNetworkEnabled;
 	
-	@ManyToOne
-	private TeacherSocialNetwork teachersSocialNet;
-	
-	public TeacherSocialNetwork getTeachersSocialNet() {
-		return teachersSocialNet;
-	}
-	public void setTeachersSocialNet(TeacherSocialNetwork teachersSocialNet) {
-		this.teachersSocialNet = teachersSocialNet;
-	}
+//	@ManyToOne
+//	private TeacherSocialNetwork teachersSocialNet;
+//	
+//	public TeacherSocialNetwork getTeachersSocialNet() {
+//		return teachersSocialNet;
+//	}
+//	public void setTeachersSocialNet(TeacherSocialNetwork teachersSocialNet) {
+//		this.teachersSocialNet = teachersSocialNet;
+//	}
 	public String getSocialNetworkId() {
 		return socialNetworkId;
 	}

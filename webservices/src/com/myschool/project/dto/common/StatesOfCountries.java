@@ -31,6 +31,7 @@ public class StatesOfCountries implements Serializable {
 	@Column(name="eff_status")
 	private boolean stateEnabled;
 	
+
 	@ManyToOne
 	@JoinColumn(name="countryCode",nullable=false)
 	private Country country;

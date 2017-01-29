@@ -4,19 +4,23 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.myschool.project.dto.common.Country;
 import com.myschool.project.dto.common.DistrictsOfState;
 import com.myschool.project.dto.common.StatesOfCountries;
 import com.myschool.project.dto.teacher.Teacher;
 
+@JsonIgnoreProperties(ignoreUnknown= true)
 @Entity
 @Table(name="ps_branch_tbl")
 public class SchoolBranch implements Serializable{
@@ -26,7 +30,8 @@ public class SchoolBranch implements Serializable{
 	@Id
 	private String branchId;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="schoolId")
 	private School school;
 
 	@Column(name="description")
@@ -41,6 +46,7 @@ public class SchoolBranch implements Serializable{
 	// address related columns
 
 	@OneToOne
+	@JoinColumn(name="countryCode")
 	private Country country;
 
 	@Column(name="address1")
@@ -55,12 +61,15 @@ public class SchoolBranch implements Serializable{
 	private String city;
 
 	@OneToOne
+	@JoinColumn(name="districtCode")
 	private DistrictsOfState district;
+
 	@OneToOne
+	@JoinColumn(name="stateCode")
 	private StatesOfCountries state;
 
 	@Column(name="postal")
-	private int postalCode;
+	private Integer postalCode;
 
 	String createdBy;
 	Date created_dttm;
@@ -71,9 +80,16 @@ public class SchoolBranch implements Serializable{
 	private String branchLatitude;
 	@Column(name="longitude_pos")
 	private String branchLongitude;
+	
+	@Column(name="branch_coed")
+	private boolean isCoEd;
+	
+	@Column(name="branch_type")
+	private String branchType;
 
 	//Each branch will have its own calendar
 	@OneToOne
+	@JoinColumn(name="calendarId")
 	private SchoolCalendar schoolCalendar;
 
 	// A Branch will have many classes
@@ -87,6 +103,22 @@ public class SchoolBranch implements Serializable{
 	//A Branch will have many teachers
 	@OneToMany(mappedBy="branchTeachers")
 	private List<Teacher> teachers;
+	
+	public String getBranchType() {
+		return branchType;
+	}
+
+	public void setBranchType(String branchType) {
+		this.branchType = branchType;
+	}
+
+	public boolean isCoEd() {
+		return isCoEd;
+	}
+
+	public void setCoEd(boolean isCoEd) {
+		this.isCoEd = isCoEd;
+	}
 
 	public School getSchool() {
 		return school;

@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import com.myschool.project.dto.common.Country;
 import com.myschool.project.dto.common.DistrictsOfState;
 import com.myschool.project.dto.common.StatesOfCountries;
-import com.myschool.project.dto.common.UserIdentity;
 import com.myschool.project.dto.school.School;
 
 @Entity
@@ -25,17 +24,18 @@ public class StudentAddress implements Serializable{
 	@ManyToOne
 	private Student student;
 	
+	@Id
 	@OneToOne
 	private School school;
 	
-	@OneToOne
-	private UserIdentity userIdentity;
+	@Column(name="stud_ssn")
+	private String SSNId;
+	
+	@Column(name="eff_date")
+	private long effectiveDateTime;
 	
 	@Column(name="eff_status")
 	private boolean studentAddressAvailable;
-
-	@Column(name="eff_date")
-	private long effectiveDateTime;
 	
 	@OneToOne
 	private Country country;
@@ -70,12 +70,7 @@ public class StudentAddress implements Serializable{
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	public UserIdentity getUserIdentity() {
-		return userIdentity;
-	}
-	public void setUserIdentity(UserIdentity userIdentity) {
-		this.userIdentity = userIdentity;
-	}
+
 	public boolean isStudentAddressAvailable() {
 		return studentAddressAvailable;
 	}
@@ -154,6 +149,17 @@ public class StudentAddress implements Serializable{
 	public void setAddressLongitude(String addressLongitude) {
 		this.addressLongitude = addressLongitude;
 	}
-	
+	public School getSchool() {
+		return school;
+	}
+	public void setSchool(School school) {
+		this.school = school;
+	}
+	public String getSSNId() {
+		return SSNId;
+	}
+	public void setSSNId(String sSNId) {
+		SSNId = sSNId;
+	}
 	
 }

@@ -25,17 +25,15 @@ public class Student implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	private String studentId;
+	
 	@OneToOne
 	@JoinColumn(name="schoolId")
 	private School school;
 
-	@Id
 	@OneToOne
 	@JoinColumn(name="branchId")
 	private SchoolBranch schoolBranch;
-
-	@Id
-	private String studentId;
 
 	@Column(name="student_rollno")
 	private String rollNo;
@@ -53,7 +51,6 @@ public class Student implements Serializable{
 	@Column(name="eff_seq")
 	private int effectiveSequence;
 
-	@Id
 	@OneToOne
 	@JoinColumn(name="classId")
 	private SchoolBranchClass studentClass;
@@ -75,6 +72,7 @@ public class Student implements Serializable{
 	//Parent table
 	
 	@OneToOne
+	@JoinColumn(name="parentId")
 	private Parent parent;
 	
 	@Column(name="sch_joining_dt")
@@ -83,7 +81,8 @@ public class Student implements Serializable{
 	//action -- promoted etc..,
 	// reason
 	// device table
-
+	
+	// change this
 	@OneToOne
 	private UserIdentity userIdentity;
 

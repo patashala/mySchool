@@ -49,7 +49,7 @@ public class School implements Serializable{
 	String lastUpdatedBy;
 	Date lastUpdated_dttm;
 
-	@OneToMany(mappedBy="school")
+	@OneToMany(mappedBy="school", fetch=FetchType.LAZY)
 	private Set<EducationBoard> schoolEducationBoards;
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="school")
